@@ -49,6 +49,10 @@ df.dropna() # will drop all the row which contains none/NA values and give consi
 #filling column values
 df["rating"] = df['rating'].fillna(df['rating'].mean()) #where i am inserting the mean value of rating column , u can also put manuam value in fillna(anyvalue).
 
+# HANDLING INCINSISTENT MISSING VALUES
+df = df.replace(["-", "none", "NULL", "?", "N/A"],'NA') #converts all the types of empty representation symbol into consistent one single symbol.
+
+
 #changing column datatype
 print(df.dtypes)
 df["price"] = df["price"].astype(float)

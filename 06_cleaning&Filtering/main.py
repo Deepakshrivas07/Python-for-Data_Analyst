@@ -27,7 +27,14 @@ filtering_based_on_price = df[df['price'] > 500]
 
 #filtering based on multiple columns
 fitering = (df['price']>500) & (df['reviews']>600)
-# print(df[fitering])
+# .loc is used to select rows and columns by labels .loc[row,cloumn]
+# Select a Row  do df.loc[2]
+# Select Multiple Rows do df.loc[1:3]
+# Select Multiple Columns df.loc[:, ["Name", "Salary"]]  The : means: "Select all rows."
+# Select a Single Value do df.loc[2, "Salary"]
+edited_df2 = df.loc[(df['price']>500) & (df['reviews']>600),["price","reviews"]]
+edited_df3 = df.loc[:]
+print(edited_df3)
 
 #CLEANING DATA (HANDLING MISSING VALUES)
 df.isna() #will give columns with rows true means there is NA in the row and FALSE where there is a value.
@@ -54,14 +61,14 @@ df = df.replace(["-", "none", "NULL", "?", "N/A"],'NA') #converts all the types 
 
 
 #changing column datatype
-print(df.dtypes)
+# print(df.dtypes)
 df["price"] = df["price"].astype(float)
 print(df.dtypes)
 
 #renaming column
-
+#inplace = True means it will change the name in the same dataframe and not create a new one
 df.rename(columns={"Product_Name": "Products"}, inplace=True) #here in columns we used {} bracket as we have to change the name in a object style
-print(df.dtypes)
+# print(df.dtypes)
 
 #REMOVING DUBLICATES
 df.drop_duplicates() #it will remove all dublicates values from the records

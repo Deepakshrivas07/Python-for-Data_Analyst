@@ -33,11 +33,11 @@ df.drop_duplicates()
 #Question 1: Which is the costliest flat?
 costiest_flat  = df['price'].idxmax() #idxmax gives index of max value and as we know loc takes row as index and column as value
 df.loc[costiest_flat]
-# print(costiest_flat) it will print the index of costliest flat but our que is Which is the costliest flat?
+#print(costiest_flat) #it will print the index of costliest flat but our que is Which is the costliest flat?
 
 # or we can write in single line 
-costiest_flat = df.loc[df['price'].idxmax()] 
-
+costiest_flat = df.loc[df['price'].idxmax(),'property_type'] 
+print(costiest_flat)
 # Question 2: Which locality has the highest average price?
 
 highest_avg_price=  df.groupby('locality')['price'].mean().sort_values(ascending=False).head(1)
@@ -75,7 +75,7 @@ most_expensive_bhk = df.groupby("bhk_count")["price"].mean().idxmax()
 
 #Question 8 Which property type is the costliest?
 most_expensive_property_type = df.groupby('property_type')['price'].max().sort_values(ascending=False).head(1)
-print(most_expensive_property_type)
+# print(most_expensive_property_type)
 
 #Question 9: Do certain builders price higher?
 builders_price = df.groupby('company_name')['price'].mean().sort_values(ascending=False)
@@ -85,4 +85,4 @@ builders_price = df.groupby('company_name')['price'].mean().sort_values(ascendin
 #Question 10: Are larger homes more expensive per sqft?
 
 sns.scatterplot(data = df , x = 'area', y = 'rate_per_sqft')
-plt.show()
+# plt.show()
